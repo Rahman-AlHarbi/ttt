@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أبطال القراءة</title>
+<meta name="description" content="مبادرة تعليمية تفاعلية لتطوير مهارات القراءة والفهم القرائي">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app-container">
+
+<!-- HEADER -->
+<header id="main-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <img src="assets/logo-school.png" alt="شعار المدرسة" class="header-logo" onerror="this.style.display='none'">
+      <div class="header-brand-text">
+        <span class="header-title">أبطال القراءة</span>
+        <span class="header-school" id="header-school-name"></span>
+      </div>
+    </div>
+    <div class="header-xp" id="header-xp-display">
+      <span class="xp-icon">⭐</span>
+      <span id="header-xp-val">0</span> XP
+      <span class="level-badge" id="header-level">مستوى 1</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main id="main-content">
+
+  <!-- HOME -->
+  <section id="page-home" class="page active">
+    <div class="hero-section">
+      <div class="hero-logo-wrap">
+        <img src="assets/logo-school.png" alt="شعار المدرسة" class="hero-school-logo" onerror="this.style.display='none'">
+      </div>
+      <h1 class="hero-title">أبطال القراءة</h1>
+      <p class="hero-school-name" id="hero-school-label"></p>
+      <p class="hero-slogan" id="hero-slogan">من نصٍّ إلى إنجاز</p>
+      <p class="hero-desc">ارفع مستواك في القراءة والفهم عبر نصوص تفاعلية وتحديات ممتعة تغطي 15 مهارة قرائية</p>
+      <div class="hero-actions">
+        <button class="btn btn-gold btn-lg" onclick="window.location.hash='#onboarding'">ابدأ الآن</button>
+        <button class="btn btn-outline btn-lg" onclick="window.location.hash='#about'">عن المبادرة</button>
+      </div>
+      <div class="hero-stats" id="hero-stats"></div>
+      <div class="daily-tip" id="home-tip-wrap">
+        <span class="tip-icon-hero">💡</span> <span id="daily-tip-text"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONBOARDING -->
+  <section id="page-onboarding" class="page">
+    <div class="card card-centered">
+      <img src="assets/logo-school.png" alt="شعار المدرسة" class="onboarding-logo" onerror="this.style.display='none'">
+      <h2>مرحبًا بك في أبطال القراءة!</h2>
+      <p style="color:var(--muted);margin-bottom:20px">أدخل اسمك وبياناتك لنبدأ الرحلة</p>
+      <div class="form-group">
+        <label for="inp-name">الاسم الكامل</label>
+        <input type="text" id="inp-name" placeholder="مثال: أحمد محمد" class="input-field">
+      </div>
+      <div class="form-group">
+        <label for="inp-class">الصف والفصل</label>
+        <input type="text" id="inp-class" placeholder="مثال: 6/أ" class="input-field">
+      </div>
+      <button class="btn btn-primary btn-lg btn-block" id="btn-start-journey">انطلق! 🚀</button>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="page-dashboard" class="page">
+    <!-- Welcome Bar -->
+    <div class="dash-welcome-wrap" id="dash-welcome"></div>
+
+    <div class="dash-content">
+      <!-- Daily Tip -->
+      <div id="dash-tip"></div>
+
+      <!-- Quick Actions: The 3 modes -->
+      <div class="mode-cards">
+        <div class="mode-card mode-daily" onclick="window.location.hash='#play/daily'">
+          <div class="mode-card-top">
+            <div class="mode-icon">🔥</div>
+            <div class="mode-info">
+              <h3>التحدي اليومي</h3>
+              <p>نص جديد كل يوم — حافظ على سلسلتك!</p>
+            </div>
+          </div>
+          <div class="streak-display" id="streak-display"></div>
+        </div>
+        <div class="mode-row">
+          <div class="mode-card" onclick="window.location.hash='#texts'">
+            <div class="mode-icon">📖</div>
+            <h3>تدريب حر</h3>
+            <p>اختر نصًا وحل أسئلته</p>
+          </div>
+          <div class="mode-card mode-skill" onclick="window.location.hash='#skills'">
+            <div class="mode-icon">🎯</div>
+            <h3>تدريب مهارة</h3>
+            <p>ركّز على مهارة محددة</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Stats -->
+      <div class="dash-stats" id="dash-progress"></div>
+
+      <!-- Weakest Skills -->
+      <div id="dash-weak-skills"></div>
+
+      <!-- Badges -->
+      <div id="dash-badges"></div>
+    </div>
+  </section>
+
+  <!-- TEXTS LIST -->
+  <section id="page-texts" class="page">
+    <div class="page-inner">
+      <h2 class="page-title">📖 اختر نصًا للتدريب</h2>
+      <div class="filter-bar">
+        <select id="filter-difficulty" class="input-field input-sm">
+          <option value="">كل المستويات</option>
+          <option value="سهل">سهل</option>
+          <option value="متوسط">متوسط</option>
+          <option value="متقدم">متقدم</option>
+        </select>
+        <select id="filter-genre" class="input-field input-sm">
+          <option value="">كل الأنواع</option>
+          <option value="معلوماتي">معلوماتي</option>
+          <option value="واقعي">واقعي</option>
+          <option value="خيالي">خيالي</option>
+          <option value="حواري">حواري</option>
+          <option value="شعري">شعري</option>
+          <option value="مقالي">مقالي</option>
+        </select>
+      </div>
+      <div id="texts-grid" class="texts-grid"></div>
+    </div>
+  </section>
+
+  <!-- SKILL SELECT -->
+  <section id="page-skills" class="page">
+    <div id="skill-select-container"></div>
+  </section>
+
+  <!-- PLAY -->
+  <section id="page-play" class="page">
+    <div class="play-container">
+      <div class="play-header">
+        <button class="btn btn-ghost" id="btn-back-play">✕</button>
+        <div class="play-progress-wrap">
+          <div class="play-progress-bar"><div class="play-progress-fill" id="play-progress-fill"></div></div>
+          <span id="play-progress-text">1/15</span>
+        </div>
+        <div class="play-timer" id="play-timer" style="display:none">00:00</div>
+      </div>
+      <div class="play-text-panel" id="play-text-panel">
+        <h3 id="play-text-title"></h3>
+        <div id="play-text-body"></div>
+        <button class="btn btn-sm btn-ghost toggle-text-btn" id="toggle-text-btn">إخفاء النص</button>
+      </div>
+      <div class="play-question-panel" id="play-question-panel">
+        <div class="skill-tag" id="play-skill-tag"></div>
+        <p class="question-stem" id="play-stem"></p>
+        <div class="options-list" id="play-options"></div>
+        <div class="explanation-box" id="play-explanation" style="display:none"></div>
+        <button class="btn btn-primary btn-lg btn-block" id="btn-next-q" style="display:none">السؤال التالي</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPORT -->
+  <section id="page-report" class="page">
+    <div id="report-container"></div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="page-profile" class="page">
+    <div id="profile-container"></div>
+  </section>
+
+  <!-- CERTIFICATE -->
+  <section id="page-certificate" class="page">
+    <div id="cert-container"></div>
+  </section>
+
+  <!-- VERIFY -->
+  <section id="page-verify" class="page">
+    <div class="card card-centered">
+      <h2>التحقق من الشهادة</h2>
+      <div class="form-group">
+        <label for="verify-id">رقم التحقق</label>
+        <input type="text" id="verify-id" class="input-field" placeholder="أدخل رقم التحقق">
+      </div>
+      <button class="btn btn-primary btn-block" id="btn-verify">تحقق</button>
+      <div id="verify-result"></div>
+    </div>
+  </section>
+
+  <!-- TEACHER -->
+  <section id="page-teacher" class="page">
+    <div id="teacher-container"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="page-about" class="page">
+    <div id="about-container"></div>
+  </section>
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav id="bottom-nav" class="bottom-nav">
+  <a href="#dashboard" class="nav-item" data-page="dashboard">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">الرئيسية</span>
+  </a>
+  <a href="#texts" class="nav-item" data-page="texts">
+    <span class="nav-icon">📖</span>
+    <span class="nav-label">النصوص</span>
+  </a>
+  <a href="#skills" class="nav-item" data-page="skills">
+    <span class="nav-icon">🎯</span>
+    <span class="nav-label">المهارات</span>
+  </a>
+  <a href="#profile" class="nav-item" data-page="profile">
+    <span class="nav-icon">👤</span>
+    <span class="nav-label">ملفي</span>
+  </a>
+</nav>
+
+<!-- FOOTER -->
+<footer id="main-footer">
+  <img src="assets/logo-teacher.png" alt="شعار اللغة العربية" class="footer-logo" onerror="this.style.display='none'">
+  <p id="footer-rights"></p>
+</footer>
+
+</div>
+
+<div id="confetti-container"></div>
+<div id="toast-container"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
